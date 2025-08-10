@@ -1,2 +1,6 @@
-# Cryptext
-A decentralized , end-to-end encrypted chat system
+# F CHAT
+``` 
+git clone <this repo>
+npm install
+npm run dev
+```

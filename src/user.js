@@ -1,0 +1,23 @@
+import GUN from 'gun';
+import 'gun/sea';
+import 'gun/axe';
+import { writable } from 'svelte/store';
+
+// Database: prefer local relay at the same origin if available
+const peers = [`${location.origin.replace('http', 'ws')}/gun`];
+export const db = GUN({ peers });
+
+// Gun User
+export const user = db.user().recall({sessionStorage: true});
+
+// Current User's username
+export const username = writable('');
+
+user.get('alias').on(v => username.set(v))
+
+db.on('auth', async(event) => {
+    const alias = await user.get('alias'); // username string
+    username.set(alias);
+
+    console.log(`signed in as ${alias}`);
+});
