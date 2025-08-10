@@ -1,6 +1,7 @@
-# F CHAT
+# Cryptext
 ``` 
 git clone <this repo>
 npm install
 npm run dev
+
 ```
